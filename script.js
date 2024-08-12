@@ -34,3 +34,7 @@ async function generatePlant() {
     document.getElementById('plant-description').textContent = plantDescription;
     document.getElementById('plant-image').src = plantImageUrl;
 }
+
+document.getElementById('generate-btn').addEventListener('click', generatePlant);
+
+generatePlant();
