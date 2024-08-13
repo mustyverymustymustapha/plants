@@ -100,17 +100,48 @@ function showFavorites() {
     favoritesModal.style.display = 'block';
 }
 
+function toggleShareOptions() {
+    const shareOptions = document.getElementById('share-options');
+    shareOptions.style.display = shareOptions.style.display === 'none' ? 'block' : 'none';
+}
+
+function sharePlant(platform) {
+    if (!currentPlant) return;
+
+    let shareUrl = '';
+    const text = `Check out this amazing plant: ${currentPlant.name}!`;
+    const url = encodeURIComponent(window.location.href);
+
+    switch (platform) {
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${url}`;
+            break;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            break;
+        case 'pinterest':
+            shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&media=${encodeURIComponent(currentPlant.imageUrl)}&description=${encodeURIComponent(text)}`;
+            break;
+    }
+
+    window.open(shareUrl, '_blank');
+}
+
 document.getElementById('generate-btn').addEventListener('click', generatePlant);
 document.getElementById('save-favorite-btn').addEventListener('click', saveFavorite);
 document.getElementById('favorites-btn').addEventListener('click', showFavorites);
+document.getElementById('share-btn').addEventListener('click', toggleShareOptions);
+document.getElementById('share-twitter').addEventListener('click', () => sharePlant('twitter'));
+document.getElementById('share-facebook').addEventListener('click', () => sharePlant('facebook'));
+document.getElementById('share-pinterest').addEventListener('click', () => sharePlant('pinterest'));
 
 document.querySelector('.close').addEventListener('click', () => {
     document.getElementById('favorites-modal').style.display = 'none';
 });
 
 window.addEventListener('click', (event) => {
-    if (event.target === document.getElementById('favorites-modal')) {
-        document.getElementById('favorites-modal').style.display = 'none';
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
     }
 });
 

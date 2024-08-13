@@ -139,3 +139,16 @@ body.winter { background-color: #e6f2ff; }
   object-fit: cover;
   border-radius: 5px;
 }
+
+.share-options {
+  display: none;
+  margin-top: 10px;
+}
+
+.share-options button {
+  background-color: #2ecc71;
+}
+
+.share-options button:hover {
+  background-color: #27ae60;
+}
