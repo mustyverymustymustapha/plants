@@ -12,6 +12,14 @@ const seasons = ['Spring', 'Summer', 'Autumn', 'Winter'];
 let currentSeason = 0;
 let currentPlant = null;
 
+const encyclopediaEntries = [
+    { name: 'Whispering Fern', description: 'A mysterious fern that produces soft whispers when its leaves rustle.' },
+    { name: 'Glowing Orchid', description: 'An orchid that emits a soft, bioluminescent light in the dark.' },
+    { name: 'Shimmering Cactus', description: 'A cactus covered in iridescent spines that shimmer in sunlight.' },
+    { name: 'Dancing Vine', description: 'A vine that sways and twirls even in the absence of wind.' },
+    { name: 'Singing Moss', description: 'A moss that produces melodious tones when moisture passes through it.' }
+];
+
 function getRandomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
@@ -100,6 +108,24 @@ function showFavorites() {
     favoritesModal.style.display = 'block';
 }
 
+function showEncyclopedia() {
+    const encyclopediaModal = document.getElementById('encyclopedia-modal');
+    const encyclopediaList = document.getElementById('encyclopedia-list');
+    encyclopediaList.innerHTML = '';
+
+    encyclopediaEntries.forEach(entry => {
+        const entryElement = document.createElement('div');
+        entryElement.className = 'encyclopedia-item';
+        entryElement.innerHTML = `
+            <h3>${entry.name}</h3>
+            <p>${entry.description}</p>
+        `;
+        encyclopediaList.appendChild(entryElement);
+    });
+
+    encyclopediaModal.style.display = 'block';
+}
+
 function toggleShareOptions() {
     const shareOptions = document.getElementById('share-options');
     shareOptions.style.display = shareOptions.style.display === 'none' ? 'block' : 'none';
@@ -130,13 +156,16 @@ function sharePlant(platform) {
 document.getElementById('generate-btn').addEventListener('click', generatePlant);
 document.getElementById('save-favorite-btn').addEventListener('click', saveFavorite);
 document.getElementById('favorites-btn').addEventListener('click', showFavorites);
+document.getElementById('encyclopedia-btn').addEventListener('click', showEncyclopedia);
 document.getElementById('share-btn').addEventListener('click', toggleShareOptions);
 document.getElementById('share-twitter').addEventListener('click', () => sharePlant('twitter'));
 document.getElementById('share-facebook').addEventListener('click', () => sharePlant('facebook'));
 document.getElementById('share-pinterest').addEventListener('click', () => sharePlant('pinterest'));
 
-document.querySelector('.close').addEventListener('click', () => {
-    document.getElementById('favorites-modal').style.display = 'none';
+document.querySelectorAll('.close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', () => {
+        closeBtn.closest('.modal').style.display = 'none';
+    });
 });
 
 window.addEventListener('click', (event) => {

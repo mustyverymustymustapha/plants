@@ -80,10 +80,17 @@ body.summer { background-color: #ffffcc; }
 body.autumn { background-color: #ffe6cc; }
 body.winter { background-color: #e6f2ff; }
 
-#favorites-btn {
+#favorites-btn, #encyclopedia-btn {
   position: fixed;
   top: 10px;
+}
+
+#favorites-btn {
   right: 10px;
+}
+
+#encyclopedia-btn {
+  right: 120px;
 }
 
 .modal {
@@ -122,18 +129,18 @@ body.winter { background-color: #e6f2ff; }
   cursor: pointer;
 }
 
-#favorites-list {
+#favorites-list, #encyclopedia-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.favorite-item {
+.favorite-item, .encyclopedia-item {
   margin: 10px;
   text-align: center;
 }
 
-.favorite-item img {
+.favorite-item img, .encyclopedia-item img {
   width: 100px;
   height: 100px;
   object-fit: cover;
