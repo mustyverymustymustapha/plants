@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button id="favorites-btn">Favorites</button>
+    <div id="favorites-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Favorite Plants</h2>
+            <div id="favorites-list"></div>
+        </div>
+    </div>
     <div class="container">
         <h1>Strange Plant Generator</h1>
         <div id="season-display"></div>
@@ -15,6 +23,7 @@
         <div id="plant-rarity"></div>
         <div id="plant-description"></div>
         <button id="generate-btn">Generate New Plant</button>
+        <button id="save-favorite-btn">Save as Favorite</button>
     </div>
     <script src="script.js"></script>
 </body>

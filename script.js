@@ -10,6 +10,7 @@ const rarities = [
 ];
 const seasons = ['Spring', 'Summer', 'Autumn', 'Winter'];
 let currentSeason = 0;
+let currentPlant = null;
 
 function getRandomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -51,6 +52,8 @@ async function generatePlant() {
     const plantRarity = generatePlantRarity();
     const plantImageUrl = await getRandomPlantImage();
 
+    currentPlant = { name: plantName, description: plantDescription, rarity: plantRarity, imageUrl: plantImageUrl };
+
     document.getElementById('plant-name').textContent = plantName;
     document.getElementById('plant-description').textContent = plantDescription;
     document.getElementById('plant-image').src = plantImageUrl;
@@ -67,7 +70,49 @@ function updateSeason() {
     generatePlant();
 }
 
+function saveFavorite() {
+    if (currentPlant) {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        favorites.push(currentPlant);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('Plant saved to favorites!');
+    }
+}
+
+function showFavorites() {
+    const favoritesModal = document.getElementById('favorites-modal');
+    const favoritesList = document.getElementById('favorites-list');
+    favoritesList.innerHTML = '';
+
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    favorites.forEach(plant => {
+        const plantElement = document.createElement('div');
+        plantElement.className = 'favorite-item';
+        plantElement.innerHTML = `
+            <img src="${plant.imageUrl}" alt="${plant.name}">
+            <p>${plant.name}</p>
+            <p class="${plant.rarity.class}">${plant.rarity.name}</p>
+        `;
+        favoritesList.appendChild(plantElement);
+    });
+
+    favoritesModal.style.display = 'block';
+}
+
 document.getElementById('generate-btn').addEventListener('click', generatePlant);
+document.getElementById('save-favorite-btn').addEventListener('click', saveFavorite);
+document.getElementById('favorites-btn').addEventListener('click', showFavorites);
+
+document.querySelector('.close').addEventListener('click', () => {
+    document.getElementById('favorites-modal').style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === document.getElementById('favorites-modal')) {
+        document.getElementById('favorites-modal').style.display = 'none';
+    }
+});
 
 setInterval(updateSeason, 30000);
 updateSeason();
