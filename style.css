@@ -36,6 +36,12 @@ h1 {
   margin-bottom: 10px;
 }
 
+#plant-rarity {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 #plant-description {
   color: #34495e;
   margin-bottom: 20px;
@@ -55,3 +61,8 @@ button {
 button:hover {
   background-color: #2980b9;
 }
+
+.common { color: #2ecc71; }
+.uncommon { color: #3498db; }
+.rare { color: #9b59b6; }
+.legendary { color: #f1c40f; }
