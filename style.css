@@ -6,6 +6,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  transition: background-color 2s ease;
 }
 
 .container {
@@ -20,6 +21,12 @@ body {
 
 h1 {
   color: #2c3e50;
+}
+
+#season-display {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #plant-image {
@@ -66,3 +73,8 @@ button:hover {
 .uncommon { color: #3498db; }
 .rare { color: #9b59b6; }
 .legendary { color: #f1c40f; }
+
+body.spring { background-color: #e6ffe6; }
+body.summer { background-color: #ffffcc; }
+body.autumn { background-color: #ffe6cc; }
+body.winter { background-color: #e6f2ff; }

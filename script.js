@@ -8,6 +8,8 @@ const rarities = [
     { name: 'Rare', chance: 0.1, class: 'rare' },
     { name: 'Legendary', chance: 0.05, class: 'legendary' }
 ];
+const seasons = ['Spring', 'Summer', 'Autumn', 'Winter'];
+let currentSeason = 0;
 
 function getRandomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -18,7 +20,7 @@ function generatePlantName() {
 }
 
 function generatePlantDescription() {
-    return `This peculiar plant has ${getRandomElement(features)} instead of leaves and can ${getRandomElement(abilities)} when exposed to moonlight.`;
+    return `This peculiar ${seasons[currentSeason].toLowerCase()} plant has ${getRandomElement(features)} instead of leaves and can ${getRandomElement(abilities)} when exposed to moonlight.`;
 }
 
 function generatePlantRarity() {
@@ -35,7 +37,7 @@ function generatePlantRarity() {
 
 async function getRandomPlantImage() {
     try {
-        const response = await fetch('https://source.unsplash.com/400x300/?plant');
+        const response = await fetch(`https://source.unsplash.com/400x300/?plant,${seasons[currentSeason]}`);
         return response.url;
     } catch (error) {
         console.error('Error fetching plant image:', error);
@@ -58,6 +60,14 @@ async function generatePlant() {
     rarityElement.className = plantRarity.class;
 }
 
+function updateSeason() {
+    currentSeason = (currentSeason + 1) % seasons.length;
+    document.getElementById('season-display').textContent = `Current Season: ${seasons[currentSeason]}`;
+    document.body.className = seasons[currentSeason].toLowerCase();
+    generatePlant();
+}
+
 document.getElementById('generate-btn').addEventListener('click', generatePlant);
 
-generatePlant();
+setInterval(updateSeason, 30000);
+updateSeason();
