@@ -20,6 +20,34 @@ const encyclopediaEntries = [
     { name: 'Singing Moss', description: 'A moss that produces melodious tones when moisture passes through it.' }
 ];
 
+const careGuideInfo = {
+    light: [
+        'Provide bright, indirect light for most plants.',
+        'Some plants may require full sun or shade, depending on their species.',
+        'Rotate your plant regularly to ensure even growth.'
+    ],
+    water: [
+        'Water thoroughly when the top inch of soil feels dry.',
+        'Ensure proper drainage to prevent root rot.',
+        'Adjust watering frequency based on the season and humidity levels.'
+    ],
+    soil: [
+        'Use well-draining potting mix appropriate for your plant type.',
+        'Repot your plant every 1-2 years or when it outgrows its current pot.',
+        'Add organic matter to the soil to improve nutrient content.'
+    ],
+    fertilizer: [
+        'Feed your plant with a balanced, water-soluble fertilizer during the growing season.',
+        'Reduce or stop fertilizing during the plant\'s dormant period.',
+        'Always follow the instructions on the fertilizer package to avoid over-fertilizing.'
+    ],
+    maintenance: [
+        'Regularly remove dead or yellowing leaves to promote healthy growth.',
+        'Dust the leaves gently with a damp cloth to keep them clean and able to photosynthesize efficiently.',
+        'Prune your plant as needed to maintain its shape and size.'
+    ]
+};
+
 function getRandomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
@@ -126,6 +154,25 @@ function showEncyclopedia() {
     encyclopediaModal.style.display = 'block';
 }
 
+function showCareGuide() {
+    const careGuideModal = document.getElementById('care-guide-modal');
+    const careGuideContent = document.getElementById('care-guide-content');
+    careGuideContent.innerHTML = '';
+
+    for (const [category, tips] of Object.entries(careGuideInfo)) {
+        const categoryElement = document.createElement('div');
+        categoryElement.innerHTML = `
+            <h3>${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+            <ul>
+                ${tips.map(tip => `<li>${tip}</li>`).join('')}
+            </ul>
+        `;
+        careGuideContent.appendChild(categoryElement);
+    }
+
+    careGuideModal.style.display = 'block';
+}
+
 function toggleShareOptions() {
     const shareOptions = document.getElementById('share-options');
     shareOptions.style.display = shareOptions.style.display === 'none' ? 'block' : 'none';
@@ -157,6 +204,7 @@ document.getElementById('generate-btn').addEventListener('click', generatePlant)
 document.getElementById('save-favorite-btn').addEventListener('click', saveFavorite);
 document.getElementById('favorites-btn').addEventListener('click', showFavorites);
 document.getElementById('encyclopedia-btn').addEventListener('click', showEncyclopedia);
+document.getElementById('care-guide-btn').addEventListener('click', showCareGuide);
 document.getElementById('share-btn').addEventListener('click', toggleShareOptions);
 document.getElementById('share-twitter').addEventListener('click', () => sharePlant('twitter'));
 document.getElementById('share-facebook').addEventListener('click', () => sharePlant('facebook'));

@@ -80,7 +80,7 @@ body.summer { background-color: #ffffcc; }
 body.autumn { background-color: #ffe6cc; }
 body.winter { background-color: #e6f2ff; }
 
-#favorites-btn, #encyclopedia-btn {
+#favorites-btn, #encyclopedia-btn, #care-guide-btn {
   position: fixed;
   top: 10px;
 }
@@ -91,6 +91,10 @@ body.winter { background-color: #e6f2ff; }
 
 #encyclopedia-btn {
   right: 120px;
+}
+
+#care-guide-btn {
+  right: 240px;
 }
 
 .modal {
@@ -129,7 +133,7 @@ body.winter { background-color: #e6f2ff; }
   cursor: pointer;
 }
 
-#favorites-list, #encyclopedia-list {
+#favorites-list, #encyclopedia-list, #care-guide-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -158,4 +162,21 @@ body.winter { background-color: #e6f2ff; }
 
 .share-options button:hover {
   background-color: #27ae60;
+}
+
+#care-guide-content {
+  text-align: left;
+}
+
+#care-guide-content h3 {
+  margin-top: 20px;
+  color: #2c3e50;
+}
+
+#care-guide-content ul {
+  padding-left: 20px;
+}
+
+#care-guide-content li {
+  margin-bottom: 10px;
 }
