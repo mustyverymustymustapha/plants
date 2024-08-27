@@ -1,0 +1,1 @@
+lil plant encyclopaedia type project for you plant lovers out there!!! i dare you to find them all (:< (kinda buggy rn)![CF2F4257-EC50-4326-853F-70B4CA715043](https://github.com/user-attachments/assets/44572566-4e6f-4d56-85b8-0bac57b13dc8)
